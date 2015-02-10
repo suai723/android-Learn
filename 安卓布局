@@ -1,0 +1,118 @@
+安卓布局
+线性布局
+	线性布局Linear Layout
+		android:orientation 属性 来指定方向
+		不管一行/列有多宽，一个元素只占一行/列 
+
+		android:layout_weight 指定权重
+		大的权重允许填充剩余区域。设置完权重后 区域会按子视图权重占领剩余的区域，默认权重是0.
+
+		fill_parent  填充所有
+		wrap_content 适当填充
+测试：
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+/>
+    <TextView
+        android:layout_marginRight="10dp"
+        android:background="#aa0059aa"
+        android:layout_width="100dp"
+        android:layout_height="fill_parent"
+        android:text="hello"/>
+    <TextView
+        android:background="#aa0059aa"
+        android:layout_width="100dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"/>
+    <TextView
+        android:background="#aa0059aa"
+        android:layout_marginLeft="10dp"
+        android:layout_width="100dp"
+        android:layout_height="fill_parent"
+        android:text="hello"/>
+</LinearLayout>
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical">
+
+<EditText
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/PhoneNum"/>
+ <EditText
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:hint="@string/email"/>
+ <EditText
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:layout_weight="1"
+     android:hint="@string/msg"
+     android:gravity="top"/>
+ <Button
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_gravity="right"
+     android:text="send"/>
+</LinearLayout>
+
+
+相对布局
+	 相对布局是相对的显示子元素的位置
+	 每一个元素的位置都可以看做是相对周边元素的位置。
+	 相对布局 可以指定子元素相对于父元素的位置，或者是相对与某个元素的位置。
+测试:
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".HelloWorld">
+
+<EditText
+    android:id="@+id/e1"
+    android:layout_width="fill_parent"
+    android:layout_height="30dp"
+    android:background="#aa1c82aa"
+ />
+<EditText
+    android:layout_width="100dp"
+    android:layout_height="30dp"
+    android:background="#aa1c82aa"
+    android:id="@+id/e2"
+    android:layout_below="@+id/e1"
+    android:layout_marginTop="10dp"/>
+<EditText
+    android:layout_width="240dp"
+    android:layout_height="30dp"
+    android:id="@+id/e3"
+    android:layout_alignParentRight="true"
+    android:layout_below="@+id/e1"
+    android:background="#aa1c82aa"
+    android:layout_marginTop="10dp"/>
+<Spinner
+    android:id="@+id/times"
+    android:layout_width="240dp"
+    android:layout_height="40dp"
+    android:layout_below="@+id/e2"
+    android:layout_alignParentLeft="true"
+    android:layout_marginTop="10dp"
+    android:background="#aaaa"/>
+<Button
+    android:layout_width="100dp"
+    android:layout_height="40dp"
+    android:layout_alignParentRight="true"
+    android:layout_below="@+id/e3"
+    android:layout_marginTop="10dp"
+    android:text="ok"/>
+</RelativeLayout>
