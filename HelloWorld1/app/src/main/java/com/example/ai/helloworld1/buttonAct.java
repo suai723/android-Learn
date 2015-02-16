@@ -89,6 +89,21 @@ public class buttonAct extends Activity {
         startActivity(new Intent("android.intent.action.Second"));
     }
 
+    int req_code=1; //活动标识
+    public  void onClick5(View v){
+        startActivityForResult(new Intent("android.intent.action.Second"),req_code);//为这个子活动打上标示
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println(data.getData().toString());
+        if ((requestCode==req_code) && (resultCode==RESULT_OK)){ //判断是哪个子活动返回的值
+
+            Toast.makeText(this,data.getData().toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     protected Dialog onCreateDialog(int id) {
         switch(id){
@@ -134,4 +149,5 @@ public class buttonAct extends Activity {
         }
         return super.onCreateDialog(id);
     }
+
 }

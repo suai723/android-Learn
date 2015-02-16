@@ -36,4 +36,11 @@
         android:layout_below="@id/btn3"
         android:text="Click to Jump to an Activity"
         android:onClick="onClick4"/>
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn4"
+        android:text="Click to get another activity data"
+        android:id="@+id/btn5"
+        android:onClick="onClick5"/>
 </RelativeLayout>
