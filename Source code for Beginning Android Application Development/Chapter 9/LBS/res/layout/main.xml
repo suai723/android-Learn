@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<com.google.android.maps.MapView 
+    android:id="@+id/mapView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:enabled="true"
+    android:clickable="true"
+    android:apiKey="0K2eMNyjc5HFPsiobLh6uLHb8F9ZFmh4uIm7VTA" />
+    
+    
+    
+    
+    <!--Emulator 0K2eMNyjc5HFPsiobLh6uLHb8F9ZFmh4uIm7VTA -->
+    <!--Real Device 0l4sCTTyRmXQBa7aedeNr7yN2V3ake5LgKVIzRA -->
+    
+</LinearLayout>

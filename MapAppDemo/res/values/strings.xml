@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MapAppDemo</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_act1">Act1</string>
+    <string name="title_activity_act2">Act2</string>
+    <string name="title_activity_act3">Act3</string>
+    <string name="title_activity_act4">Act4</string>
+    <string name="tab1">主页</string>
+    <string name="tab2">通知</string>
+    <string name="tab3">活动</string>
+    <string name="tab4">更多</string>
+    <string name="search">查找</string>
+    <string name="title_activity_search">SearchAct</string>
+
+</resources>
