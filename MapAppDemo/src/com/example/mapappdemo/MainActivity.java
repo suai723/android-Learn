@@ -1,5 +1,7 @@
 package com.example.mapappdemo;
 
+import java.io.Serializable;
+
 import android.support.v7.app.ActionBarActivity;
 import android.app.TabActivity;
 import android.content.Intent;
@@ -27,11 +29,19 @@ public class MainActivity extends TabActivity implements OnCheckedChangeListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+        //全局上下文
+        DBAdapter db = new DBAdapter(getBaseContext());
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("db", db);
         mAct1Intent= new Intent(this,Act1.class);
         mAct2Intent= new Intent(this,Act2.class);
         mAct3Intent= new Intent(this,Act3.class);
         mAct4Intent= new Intent(this,Act4.class);
+        //绑定数据库对象
+//        mAct1Intent.putExtras(bundle);
+//        mAct2Intent.putExtras(bundle);
+//        mAct3Intent.putExtras(bundle);
+//        mAct4Intent.putExtras(bundle);
 
         ((RadioButton)findViewById(R.id.radio_button1)).setOnCheckedChangeListener(this);
         ((RadioButton)findViewById(R.id.radio_button2)).setOnCheckedChangeListener(this);

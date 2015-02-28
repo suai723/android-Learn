@@ -4,13 +4,25 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 
-public class Act3 extends ActionBarActivity {
-
+public class Act3 extends ActionBarActivity implements OnClickListener{
+	private Button joinActBtn=null;
+	private ListView actLv=null;
+	private ArrayAdapter<String> arrayAdapter = null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_act3);
+		
+		joinActBtn=(Button)findViewById(R.id.joinact);
+		actLv=(ListView)findViewById(R.id.act3lv);
+		arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line);
 	}
 
 	@Override
@@ -30,5 +42,10 @@ public class Act3 extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onClick(View v) {
+
 	}
 }

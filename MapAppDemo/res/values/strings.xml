@@ -14,5 +14,7 @@
     <string name="tab4">更多</string>
     <string name="search">查找</string>
     <string name="title_activity_search">SearchAct</string>
+    <string name="title_activity_create">CreateAct</string>
+    <string name="title_activity_time_picker">TimePicker</string>
 
 </resources>

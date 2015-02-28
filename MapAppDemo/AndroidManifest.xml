@@ -8,7 +8,6 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="21" />
 
-
     <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" >
     </uses-permission>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
@@ -58,7 +57,6 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="GFVxLFGfofbiKNUgBthOUp7L" />
-        
 
         <activity
             android:name=".MainActivity"
@@ -101,7 +99,6 @@
             android:label="@string/title_activity_act4" >
             <intent-filter>
                 <action android:name="android.intent.action.act4" />
-
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </activity>
@@ -109,12 +106,29 @@
             android:name=".SearchAct"
             android:label="@string/title_activity_search" >
         </activity>
-        
-             <service
+
+        <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
         </service>
+
+        <activity
+            android:name=".CreateAct"
+            android:label="@string/title_activity_create" >
+            <intent-filter>
+                <action android:name="android.intent.action.create" />
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TimePicker"
+            android:label="@string/title_activity_time_picker" >
+            <intent-filter>
+                <action android:name="android.intent.action.timepicker" />
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -8,9 +8,115 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.mapappdemo.Act4" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+   <LinearLayout 
+       android:id="@+id/act4ll"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+
+       <TextView
+           android:id="@+id/textView1"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Login"
+           android:textAppearance="?android:attr/textAppearanceLarge" />
+
+       <EditText 
+           android:layout_marginTop="20dp"
+           android:textSize="15dp"
+           android:id="@+id/logusername"
+           android:hint="UserName"
+           android:singleLine="true"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+       />
+       <EditText 
+           android:id="@+id/logpassword"
+           android:textSize="15dp"
+           android:hint="PassWord"
+           android:singleLine="true"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:password="true"
+       />
+       <LinearLayout 
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+           <Button 
+               android:id="@+id/login"
+               android:layout_width="0dip"
+               android:layout_height="50dp"
+               android:layout_weight="1"
+               android:text="Login"/>
+            <Button 
+               android:id="@+id/loginout"
+               android:layout_width="0dip"
+               android:layout_height="50dp"
+               android:layout_weight="1"
+               android:text="LoginOut"/>
+       </LinearLayout>
+
+       <TextView
+           android:layout_marginTop="30dp"
+           android:id="@+id/textView2"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Register"
+           android:textAppearance="?android:attr/textAppearanceLarge" />
+
+       <EditText 
+           android:layout_marginTop="20dp"
+           android:id="@+id/username"
+           android:hint="Input UserName"
+           android:textSize="15dp"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:singleLine="true"
+       />
+      <EditText 
+           android:id="@+id/password"
+           android:hint="Input Password"
+           android:textSize="15dp"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:singleLine="true"
+       />
+       <EditText 
+           android:id="@+id/repassword"
+           android:hint="ReInput Password"
+           android:textSize="15dp"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:singleLine="true"
+       />
+        <EditText 
+           android:id="@+id/realname"
+           android:hint="Input Your Real Name"
+           android:textSize="15dp"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:singleLine="true"
+       />
+        
+      <LinearLayout 
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+           <Button 
+               android:id="@+id/register"
+               android:layout_width="0dip"
+               android:layout_height="50dp"
+               android:layout_weight="1"
+               android:text="Register"/>
+           
+            <Button 
+               android:id="@+id/clear"
+               android:layout_width="0dip"
+               android:layout_height="50dp"
+               android:layout_weight="1"
+               android:text="Clear"/>
+       </LinearLayout>
+   </LinearLayout>
 
 </RelativeLayout>

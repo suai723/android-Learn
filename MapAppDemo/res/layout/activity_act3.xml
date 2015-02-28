@@ -8,9 +8,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.mapappdemo.Act3" >
 
-    <TextView
-        android:layout_width="wrap_content"
+   <LinearLayout 
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:orientation="horizontal"
+        android:id="@+id/actll4">
+
+            <Button 
+               android:id="@+id/joinact"
+               android:layout_width="0dip"
+               android:layout_height="50dp"
+               android:layout_weight="1"
+               android:text="JoinAct"/>
+    </LinearLayout>
+    <ListView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/act3lv"
+        android:layout_below="@id/actll4"/>
+
 
 </RelativeLayout>

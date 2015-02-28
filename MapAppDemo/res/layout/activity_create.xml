@@ -1,0 +1,112 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.mapappdemo.CreateAct" 
+    android:orientation="vertical">
+
+   <TextView
+           android:id="@+id/textcreateact"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="CreateActivity"
+           android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:id="@+id/actid"
+        android:singleLine="true"
+        android:hint="actid"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left"
+        android:id="@+id/actname"
+        android:singleLine="true"
+        android:hint="actname"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left"
+        android:id="@+id/addr"
+        android:singleLine="true"
+        android:hint="address"/>
+
+     <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left"
+        android:id="@+id/startday"
+        android:singleLine="true"
+        android:hint="startday"/>
+     
+
+
+     <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left"
+        android:id="@+id/starttime"
+        android:singleLine="true"
+        android:hint="starttime"/>
+    
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left"
+        android:id="@+id/endtime"
+        android:singleLine="true"
+        android:hint="endtime"/>
+
+    <EditText
+        android:id="@+id/actdesc"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:ems="5"
+        android:textSize="15dp"
+        android:hint="actdesc"
+        android:inputType="textMultiLine" 
+        android:gravity="top">	
+        <requestFocus />
+    </EditText>
+    
+        <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/actll4">
+            <Button 
+               android:id="@+id/createsubmit"
+               android:layout_width="0dip"
+               android:layout_height="50dp"
+               android:layout_weight="1"
+               android:text="Submit"/>
+            <Button 
+               android:id="@+id/createcancle"
+               android:layout_width="0dip"
+               android:layout_height="50dp"
+               android:layout_weight="1"
+               android:text="Cancel"/>
+    </LinearLayout>
+
+</LinearLayout>

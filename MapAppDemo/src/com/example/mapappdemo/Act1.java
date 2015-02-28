@@ -17,6 +17,7 @@ import com.baidu.mapapi.map.BaiduMap.OnMarkerDragListener;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.CircleOptions;
+import com.baidu.mapapi.map.InfoWindow;
 import com.baidu.mapapi.map.MapPoi;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
@@ -36,9 +37,12 @@ import com.baidu.platform.comapi.map.h;
 import com.baidu.platform.comapi.map.m;
 
 import android.support.v7.app.ActionBarActivity;
+import android.R.color;
 import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -75,6 +79,10 @@ public class Act1 extends Activity {
     private Intent searchIntent=null;
     public static final int REQUEST_SEARCH=1;
     
+    //创建活动
+    private Intent creatActIntent=null;
+    public static final int REQUEST_CREATACT=2;
+    
     //标注
     private LatLng markPosition=null;
     private MyLocationData userlocData=null;
@@ -82,6 +90,8 @@ public class Act1 extends Activity {
     
     
     public  Handler handler=null;
+    private InfoWindow mInfoWindow  =null;
+    
     
    
     
@@ -103,8 +113,9 @@ public class Act1 extends Activity {
         
         LocInit();
         ListenerInit();
-        //跳转poi索引
+        //跳转
         searchIntent= new Intent(this,SearchAct.class);
+        creatActIntent = new Intent(this,CreateAct.class);
         Button searchBtn = (Button)findViewById(R.id.searchbtn);
         checkButton =(Button)findViewById(R.id.CheckBtn);
         checkButton.setEnabled(false);
@@ -176,7 +187,7 @@ public class Act1 extends Activity {
 			
 			@Override
 			public void onMapClick(LatLng point) {
-				markPosition=point;
+				markPosition=point;		
 				System.out.println("mapClick");
 				if (DestMarker==null) {
 					CreatDest(point);	
@@ -185,6 +196,10 @@ public class Act1 extends Activity {
 					DestroyDestAndCircle();
 					CreatDest(point);
 					CreateCircle(point);
+				}
+				if (mInfoWindow!=null) {
+					mInfoWindow=null;
+					mBaidumap.hideInfoWindow();
 				}
 	
 			}
@@ -195,8 +210,41 @@ public class Act1 extends Activity {
 			
 			@Override
 			public boolean onMarkerClick(Marker marker) {
-				// TODO Auto-generated method stub
-				return false;
+				
+				Button button = new Button(getApplicationContext());
+				button.setText("CreateAct");
+				button.setTextColor(Color.parseColor("#000000"));
+				button.setTextSize((float)15);
+				button.setBackgroundResource(R.drawable.popup);  
+				//定义用于显示该InfoWindow的坐标点  
+				LatLng pt = marker.getPosition();
+				//创建InfoWindow , 传入 view， 地理坐标， y 轴偏移量 
+				mInfoWindow = new InfoWindow(button, pt, -47);  
+				//显示InfoWindow  
+				mBaidumap.showInfoWindow(mInfoWindow);
+
+				Bundle info = marker.getExtraInfo();//如果绑定了数据直接传绑定的数据 没绑定则新建
+				if (info==null) {
+					LatLng point =marker.getPosition();
+					Bundle bundle = new Bundle();
+					bundle.putDouble("lat", point.latitude);
+					bundle.putDouble("lon", point.longitude);
+					bundle.putInt("state", 0);
+					creatActIntent.putExtras(bundle);
+				}else {
+					info.putInt("state", 1);
+					creatActIntent.putExtras(info);
+				}
+				
+				button.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						System.out.println("infowindow btn click!!!!!!");
+						//跳转创建活动页面
+						startActivityForResult(Act1.this.creatActIntent,REQUEST_CREATACT);
+					}
+				});
+				return true;
 			}
 		});
         
@@ -206,6 +254,10 @@ public class Act1 extends Activity {
 			public void onMarkerDragStart(Marker marker) {
                 if (mCircle !=null)
                     mCircle.remove();
+				if (mInfoWindow!=null) {
+					mInfoWindow=null;
+					mBaidumap.hideInfoWindow();
+				}
 				
 			}
 			
@@ -343,5 +395,12 @@ public class Act1 extends Activity {
 	      }
 			
 		}	
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	// TODO Auto-generated method stub
+    	super.onActivityResult(requestCode, resultCode, data);
+    	System.out.println("onActivityResult!!!!   "+requestCode);
     }
 }
