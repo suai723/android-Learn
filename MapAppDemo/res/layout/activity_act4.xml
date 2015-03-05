@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.mapappdemo.Act4" >
+    tools:context="com.example.mapappdemo.fragment.MoreFragment" >
 
    <LinearLayout 
        android:id="@+id/act4ll"

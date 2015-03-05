@@ -1,20 +1,45 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="com.example.ai.mapappdemo.Act1">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical">
 
+    <LinearLayout
+		    android:layout_alignParentBottom="true"
+		    android:id="@+id/ll"
+		    android:layout_width="fill_parent"
+		    android:layout_height="112dp"
+		    android:orientation="horizontal"
+		    android:weightSum="2">
+		  <Button 
+		     android:id="@+id/CheckBtn"
+		     android:layout_weight="1"
+             android:layout_width="0dp"
+             android:layout_height="100dp"
+             android:background="#0000"
+             android:layout_gravity="center"
+             android:text="签到"/>
+		  
+		  <Button 
+		     android:id="@+id/FailBtn"
+		     android:layout_weight="1"
+             android:layout_width="0dp"
+             android:layout_height="100dp"
+             android:background="#0000"
+             android:layout_gravity="center"
+             android:text="请假"/>
+		  	 
+		</LinearLayout>
+    
         <RelativeLayout
+            android:layout_above="@id/ll"
             android:id="@+id/rl"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
             <com.baidu.mapapi.map.MapView
                 android:id="@+id/bmapView"
-                android:layout_width="fill_parent"
-                android:layout_height="400dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:clickable="true" />
             <Button
                 android:layout_marginTop="10dp"
@@ -24,30 +49,8 @@
                 android:id="@+id/searchbtn"
                 android:onClick="searchClick"/>
         </RelativeLayout>
-		<LinearLayout
-		    android:id="@+id/ll"
-		    android:layout_width="fill_parent"
-		    android:layout_height="wrap_content"
-		    android:orientation="horizontal">
-		  <Button 
-		     android:layout_margin="20dp"
-		     android:id="@+id/CheckBtn"
-		     android:layout_weight="1"
-             android:layout_width="50dp"
-             android:layout_height="100dp"
-             android:text="Check"/>
-		  
-		  <Button 
-		     android:layout_margin="20dp"
-		     android:id="@+id/FailBtn"
-		     android:layout_weight="1"
-             android:layout_width="50dp"
-             android:layout_height="100dp"
-             android:text="Fail"/>
-		  	 
-		</LinearLayout>
-
+		
            
 
 
-</LinearLayout>
+</RelativeLayout>

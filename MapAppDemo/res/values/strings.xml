@@ -9,7 +9,7 @@
     <string name="title_activity_act3">Act3</string>
     <string name="title_activity_act4">Act4</string>
     <string name="tab1">主页</string>
-    <string name="tab2">通知</string>
+    <string name="tab2">云推送消息</string>
     <string name="tab3">活动</string>
     <string name="tab4">更多</string>
     <string name="search">查找</string>
