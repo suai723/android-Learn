@@ -1,0 +1,28 @@
+--建表语句
+create table t_act 
+(act_id varchar(100),
+ addr varchar(100), 
+ loc varchar(100), 
+ start_day varchar(100),
+ start_time varchar(100),
+ end_time varchar(100),
+ person_num varchar(100),
+ act_desc varchar(200),
+ host_user_name varchar(100),
+ host_user_id varchar(100),
+ act_name varchar(100),
+ act_state varchar(100));
+
+
+ create table t_person (
+            person_id varchar(100),
+            act_id varchar(100),
+            name varchar(100),
+            current_loc varchar(100),
+            arrive_state varchar(100),
+            arrive_time varchar(100),
+            leave_state varchar(100),
+            reason_desc varchar(100),
+            host varchar(100),
+            user_name varchar(100),
+            user_id varchar(100));
