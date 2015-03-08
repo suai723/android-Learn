@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <servlet>
+        <servlet-name>InitApp</servlet-name>
+        <servlet-class>com.mapapp.server.InitApp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveCheckArea</servlet-name>
+        <servlet-class>com.mapapp.server.SaveCheckArea</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SearchCheckArea</servlet-name>
+        <servlet-class>com.mapapp.server.SearchCheckArea</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DelCheckArea</servlet-name>
+        <servlet-class>com.mapapp.server.DelCheckArea</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SavePerson</servlet-name>
+        <servlet-class>com.mapapp.server.savePerson</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>InitApp</servlet-name>
+        <url-pattern>/init</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveCheckArea</servlet-name>
+        <url-pattern>/savearea</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SearchCheckArea</servlet-name>
+        <url-pattern>/searcharea</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DelCheckArea</servlet-name>
+        <url-pattern>/delarea</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SavePerson</servlet-name>
+        <url-pattern>/saveperson</url-pattern>
+    </servlet-mapping>
+</web-app>
