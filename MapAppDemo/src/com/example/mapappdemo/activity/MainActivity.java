@@ -1,10 +1,16 @@
 package com.example.mapappdemo.activity;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.http.Header;
+import org.apache.http.HttpResponse;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
@@ -22,6 +28,9 @@ import com.example.mapappdemo.fragment.ShowCheckAreaFragment;
 import com.example.mapappdemo.fragment.MoreFragment;
 import com.example.mapappdemo.fragment.NotificationFragment;
 import com.example.mapappdemo.util.Utils;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.ResponseHandlerInterface;
 
 import android.support.v7.app.ActionBarActivity;
 import android.annotation.SuppressLint;
@@ -31,6 +40,8 @@ import android.app.FragmentTransaction;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
@@ -58,16 +69,30 @@ public class MainActivity extends TabActivity implements OnCheckedChangeListener
     
     public ListView pushLv= null;
 	public PushListViewAdapter pushAdapter = null;
+	public AsyncHttpClient client=null;
+	public static Activity dests=new Activity();
+	
+	public RadioButton btn1;
+	public RadioButton btn2;
+	public RadioButton btn3;
+	public RadioButton btn4;
+	
+	public static final String BASE="http://192.168.199.140:8888/MapAppServer";
    
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        ((RadioButton)findViewById(R.id.radio_button1)).setOnCheckedChangeListener(this);
-        ((RadioButton)findViewById(R.id.radio_button2)).setOnCheckedChangeListener(this);
-        ((RadioButton)findViewById(R.id.radio_button3)).setOnCheckedChangeListener(this);
-        ((RadioButton)findViewById(R.id.radio_button4)).setOnCheckedChangeListener(this);
+        btn1=((RadioButton)findViewById(R.id.radio_button1));
+        btn2=((RadioButton)findViewById(R.id.radio_button2));
+        btn3=((RadioButton)findViewById(R.id.radio_button3));
+        btn4=((RadioButton)findViewById(R.id.radio_button4));
+        
+        btn1.setOnCheckedChangeListener(this);
+        btn2.setOnCheckedChangeListener(this);
+        btn3.setOnCheckedChangeListener(this);
+        btn4.setOnCheckedChangeListener(this);
 
         setDefaultFragment();
         
@@ -81,6 +106,25 @@ public class MainActivity extends TabActivity implements OnCheckedChangeListener
         List<String> tags = new ArrayList<String>(Arrays.asList("t1","t2"));
         PushManager.setTags(getApplicationContext(), tags);
         
+        //App初始化连接服务器
+        AsyncHttpClient client= new AsyncHttpClient();
+        client.get(BASE+"/init", new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+                String success = null;
+                try {
+                    success = new String(bytes, "UTF-8");        
+                    Toast.makeText(getBaseContext(), success, Toast.LENGTH_SHORT).show();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+            	Toast.makeText(getBaseContext(), "初始化失败 请检查网络"+String.valueOf(i), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -199,4 +243,8 @@ public class MainActivity extends TabActivity implements OnCheckedChangeListener
 		}
     	super.onNewIntent(intent);
     }
+    
+    
+    
+    
 }

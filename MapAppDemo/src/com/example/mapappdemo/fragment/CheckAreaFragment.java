@@ -109,6 +109,8 @@ public class CheckAreaFragment extends Fragment implements OnMarkerClickListener
     private LatLng CheckPoint=null;
     
     private boolean hasMarked = false;
+    
+    
    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -159,31 +161,22 @@ public class CheckAreaFragment extends Fragment implements OnMarkerClickListener
 			public void run() {
 				System.out.println("timer_run");
 				if (hasLoc) {
-					
-					//com.example.mapappdemo.entity.Activity a=((MainActivity)getActivity()).currentCheckArea;
-//					if (a!=null && !hasMarked) {
-//						hasMarked=true;
-//						String loc = a.getLoc();
-//						CheckPoint= new LatLng(Double.valueOf(loc.split(":")[0]) , Double.valueOf(loc.split(":")[1])); 
-//						CreateCheckPoint(CheckPoint,false);
-//						CreateCheckArea(CheckPoint);
-//						
-//						LatLng userPoint = new LatLng(userlocData.latitude, userlocData.longitude);
-//						if(SpatialRelationUtil.isCircleContainsPoint(CheckPoint, DISTANTS, userPoint)){
-//							System.out.println("Arrived!!!!!!!!!!!!!!!!!!!!!");	
-//							if (handler!=null) {
-//								Message msg= handler.obtainMessage();
-//								msg.arg1=0;
-//								handler.sendMessage(msg);
-//							}
-//						}else {
-//							Message msg= handler.obtainMessage();
-//							msg.arg1=1;
-//							handler.sendMessage(msg);
-//						}
-//					}
-					System.out.println("oooo");
-
+					if(MainActivity.dests.getActId()!=null){
+						String loc=MainActivity.dests.getLoc();
+						LatLng CheckPoint = new LatLng(Double.valueOf(loc.split(":")[0]) , Double.valueOf(loc.split(":")[1])); 
+						LatLng userPoint = new LatLng(userlocData.latitude, userlocData.longitude);
+						if(SpatialRelationUtil.isCircleContainsPoint(CheckPoint, DISTANTS, userPoint)){
+							if (handler!=null) {
+								Message msg= handler.obtainMessage();
+								msg.arg1=0;
+								handler.sendMessage(msg);
+							}
+						}else {
+							Message msg= handler.obtainMessage();
+							msg.arg1=1;
+							handler.sendMessage(msg);
+						}
+					}
 				}
 			}
 		},3000,5000); 
@@ -269,7 +262,20 @@ public class CheckAreaFragment extends Fragment implements OnMarkerClickListener
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+	@Override
+	public void onStart() {
+        if (MainActivity.dests.getActId()!=null) {
+			String loc=MainActivity.dests.getLoc();
+			LatLng CheckPoint = new LatLng(Double.valueOf(loc.split(":")[0]) , Double.valueOf(loc.split(":")[1])); 
+			BitmapDescriptor Destbitmap = BitmapDescriptorFactory.fromResource(R.drawable.icon_gcoding);
+			OverlayOptions markOPtion=new MarkerOptions().position(CheckPoint)
+								.icon(Destbitmap)
+								.zIndex(9)
+								.draggable(false);
+			mBaidumap.addOverlay(markOPtion);
+		}
+		super.onStart();
+	}
     @Override
 	public void onPause() {
         
@@ -296,13 +302,13 @@ public class CheckAreaFragment extends Fragment implements OnMarkerClickListener
           CreateCheckArea(markPosition);
           CreateCheckPoint(markPosition,true);
 		}
-        Intent i = getActivity().getIntent();
-        Bundle bundle=i.getExtras();
-//        com.example.mapappdemo.entity.Activity act =(com.example.mapappdemo.entity.Activity)bundle.get("selectedAct");
+
         
         mapView.onResume();
         super.onResume();
     }
+    
+   
     
     private class MyLocationListener implements BDLocationListener {
 

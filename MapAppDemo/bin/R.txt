@@ -554,11 +554,12 @@ int layout activity_act4 0x7f03001a
 int layout activity_acts 0x7f03001b
 int layout activity_create 0x7f03001c
 int layout activity_date_picker 0x7f03001d
-int layout activity_main 0x7f03001e
-int layout activity_pushs 0x7f03001f
-int layout activity_search 0x7f030020
-int layout activity_time_picker 0x7f030021
-int layout support_simple_spinner_dropdown_item 0x7f030022
+int layout activity_join 0x7f03001e
+int layout activity_main 0x7f03001f
+int layout activity_pushs 0x7f030020
+int layout activity_search 0x7f030021
+int layout activity_time_picker 0x7f030022
+int layout support_simple_spinner_dropdown_item 0x7f030023
 int menu act1 0x7f0c0000
 int menu act2 0x7f0c0001
 int menu act3 0x7f0c0002

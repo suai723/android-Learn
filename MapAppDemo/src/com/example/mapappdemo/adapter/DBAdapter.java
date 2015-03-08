@@ -167,7 +167,7 @@ public class DBAdapter extends SQLiteOpenHelper implements Serializable {
 	}
 	
 	public Boolean deleteACT(String actId) {
-		return db.delete(DATABASE_ACT_TABLE, KEY_ACT_ID + "=\'" + actId+"\'", null) > 0;
+		return db.delete(DATABASE_ACT_TABLE, null, null) > 0;
 	}
 
 	public Cursor getAllActs() {

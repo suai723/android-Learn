@@ -1,8 +1,11 @@
 package com.example.mapappdemo.activity;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.UUID;
+
+import org.apache.http.Header;
 
 import com.example.mapappdemo.R;
 import com.example.mapappdemo.R.id;
@@ -10,6 +13,10 @@ import com.example.mapappdemo.R.layout;
 import com.example.mapappdemo.R.menu;
 import com.example.mapappdemo.adapter.DBAdapter;
 import com.example.mapappdemo.entity.User;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
@@ -153,9 +160,39 @@ public class CreateCheck extends Activity implements OnClickListener,OnDateChang
 					act.setEndTime(endTime.getText().toString());
 					act.setHostUserId(u.getUserId());
 					act.setHostUserName(u.getUserName());
-					db.inserAct(act);
-					db.close();
-					Toast.makeText(getBaseContext(), "创建活动成功!!!!!", Toast.LENGTH_SHORT).show();		
+					AsyncHttpClient client = new AsyncHttpClient();
+					RequestParams params = new RequestParams();
+					Gson gson = new Gson();
+					params.put("act", gson.toJson(act));
+					client.post(MainActivity.BASE+"/savearea", params, new AsyncHttpResponseHandler() {
+						@Override
+						public void onSuccess(int i, Header[] header, byte[] bytes) {
+							
+							try {
+								String success = new String(bytes,"UTF-8");
+								if (success.equals("ok")) {
+									db.inserAct(act);
+									db.close();
+									Toast.makeText(getBaseContext(), "创建活动成功!!!!!", Toast.LENGTH_SHORT).show();	
+								}else {
+									db.close();
+									Toast.makeText(getBaseContext(), "创建活动失败!!!!!", Toast.LENGTH_SHORT).show();	
+								}
+
+							} catch (UnsupportedEncodingException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+						}
+						
+						@Override
+						public void onFailure(int i, Header[] header, byte[] bytes, Throwable throwable) {
+							Toast.makeText(getBaseContext(), "创建活动失败 请检查网络!!!!!", Toast.LENGTH_SHORT).show();	
+							
+						}
+					});
+						
 		            setResult(RESULT_OK,getIntent());
 		            finish();
 				}else {
